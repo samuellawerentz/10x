@@ -15,7 +15,7 @@ Developer scripts and tools for Plivo/Contacto workflows.
 
 ```bash
 # Clone the repo
-git clone git@github.com:plivo/10x.git ~/10x
+git clone git@github.com:samuellawerentz/10x.git ~/10x
 
 # Make scripts executable
 chmod +x ~/10x/jd/jd.sh
@@ -29,7 +29,7 @@ export PATH="$PATH:$HOME/10x/jd:$HOME/10x/mdd"
 
 ```bash
 # Clone the repo
-git clone git@github.com:plivo/10x.git ~/10x
+git clone git@github.com:samuellawerentz/10x.git ~/10x
 
 # Make scripts executable
 chmod +x ~/10x/jd/jd.sh
