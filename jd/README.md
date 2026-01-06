@@ -32,6 +32,8 @@ jd [REPO] [BRANCH] [OPTIONS]
 
 **Defaults:** `contacto-console` repo, `dev` branch, `dev` environment
 
+** THIS NEEDS VPN TO BE CONNECTED TO WORK**
+
 ## Features
 
 | Flag | Description | Example |
