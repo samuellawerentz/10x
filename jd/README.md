@@ -4,9 +4,15 @@ Deploy CX projects from terminal. Trigger builds, watch logs, check status, abor
 
 ## Screenshots
 
+Deploy to dev
+
 ![Interactive mode](screenshot-1.png)
 
+Get Status of a build
+
 ![Build triggered](screenshot-2.png)
+
+Abort a build
 
 ![Watch mode](screenshot-3.png)
 
