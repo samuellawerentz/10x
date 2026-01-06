@@ -37,7 +37,7 @@ case "$1" in
         ;;
     "")
         # Stop existing, run indefinitely
-        stop_awake 2>/dev/null
+        stop_awake &>/dev/null
         caffeinate -is &
         echo $! > "$PIDFILE"
         disown
@@ -50,7 +50,7 @@ case "$1" in
         fi
         
         # Stop existing, run with timeout
-        stop_awake 2>/dev/null
+        stop_awake &>/dev/null
         minutes=$1
         
         caffeinate -is -t $((minutes * 60)) &
