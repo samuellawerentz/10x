@@ -96,11 +96,11 @@ else
     if command -v cursor-agent &> /dev/null; then
         AI_AGENT="cursor-agent"
         AI_AGENT_NAME="cursor-agent"
-    elif command -v claude-code &> /dev/null; then
-        AI_AGENT="claude-code"
-        AI_AGENT_NAME="claude-code"
+    elif command -v claude &> /dev/null; then
+        AI_AGENT="claude"
+        AI_AGENT_NAME="claude"
     else
-        echo "No AI agent found (cursor-agent or claude-code)."
+        echo "No AI agent found (cursor-agent or claude)."
         echo "Please resolve conflicts manually and commit."
         echo ""
         echo "Conflicted files:"
@@ -131,7 +131,7 @@ After resolving, ensure no conflict markers remain in any file."
     if [ "$AI_AGENT" = "cursor-agent" ]; then
         resolution_result=$(cursor-agent -p --force --model sonnet-4.5-thinking "$CONFLICT_PROMPT" 2>&1)
     else
-        resolution_result=$(claude-code -p --force "$CONFLICT_PROMPT" 2>&1)
+        resolution_result=$(claude -p --dangerously-skip-permissions "$CONFLICT_PROMPT" 2>&1)
     fi
     
     # Check if human intervention is required
