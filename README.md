@@ -1,13 +1,29 @@
 # 10x
 
-CLI tools that save you time. Built for Contacto devs, useful for anyone.
+CLI tools that automate tedious workflows. Built for Contacto devs, useful for anyone who wants to stop context-switching between terminal and browser.
+
+## Why 10x?
+
+Save 5-10 minutes on every deploy and merge. That adds up fast when you're shipping multiple times a day. These scripts eliminate manual browser work, handle repetitive git operations, and use AI to resolve merge conflicts automatically.
 
 ## What's Inside
 
 | Script | What it does |
 |--------|--------------|
-| [jd](./jd/) | Deploy to Jenkins without leaving your terminal |
-| [mdd](./mdd/) | Merge any branch to dev - handles conflicts with AI |
+| [jd](./jd/) | Deploy to Jenkins from your terminal. Skip opening browsers, clicking through UI, and waiting for pages to load. Select project, branch, and deploy in seconds. |
+| [mdd](./mdd/) | Merge any branch to dev with zero manual intervention. Detects conflicts, uses AI (Claude/OpenAI) to resolve them intelligently, and pushes the result. No more copy-pasting conflict markers. |
+
+## Quick Start
+
+```bash
+# Deploy current branch to Jenkins
+jd.sh
+
+# Merge feature branch to dev (handles conflicts automatically)
+mdd.sh feature/new-thing
+```
+
+Run with `-h` flag for all options and configuration details.
 
 ## Installation
 
@@ -22,4 +38,4 @@ chmod +x ~/10x/jd/jd.sh ~/10x/mdd/mdd.sh
 export PATH="$PATH:$HOME/10x/jd:$HOME/10x/mdd"
 ```
 
-That's it. Run `jd.sh -h` or `mdd.sh -h` to get started.
+Restart your terminal or source your rc file. Done.
