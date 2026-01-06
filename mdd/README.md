@@ -1,42 +1,40 @@
 # mdd - Merge to Dev
 
-Merge a branch into dev with automatic conflict resolution.
-
-## Requirements
-
-- `git`
-- `cursor-agent` - for AI-powered conflict resolution
+One command to merge your branch into dev and push. If there are conflicts, it uses AI (cursor-agent) to resolve them automatically.
 
 ## Usage
 
 ```bash
-mdd [BRANCH]
+mdd.sh [BRANCH]
 ```
 
-If no branch specified, uses current branch.
-
-## What it does
-
-1. Stashes uncommitted changes
-2. Fetches latest from remote
-3. Creates temp merge branch from origin/dev
-4. Merges your branch into it
-5. If conflicts: invokes cursor-agent to resolve
-6. Pushes to origin/dev
-7. Cleans up and restores stashed changes
+No branch? Uses your current branch.
 
 ## Examples
 
 ```bash
-# Merge current branch to dev
-mdd
-
-# Merge specific branch to dev
-mdd feature/my-feature
+mdd.sh                      # Merge current branch to dev
+mdd.sh feature/new-login    # Merge specific branch to dev
 ```
 
-## Notes
+## How it Works
 
-- Cannot merge dev to dev
-- If cursor-agent cannot resolve conflicts, it will abort and require manual intervention
-- Original branch and working directory remain unchanged
+1. Stashes your uncommitted work (safety first)
+2. Fetches latest dev from remote
+3. Merges your branch into dev
+4. If conflicts arise, cursor-agent attempts to resolve them
+5. Pushes merged result to origin/dev
+6. Restores your stashed changes
+
+Your local branch stays untouched. You stay on your current branch.
+
+## Requirements
+
+- `git`
+- `cursor-agent` (for AI conflict resolution)
+
+## Good to Know
+
+- Won't let you merge dev into dev (that's a no-op)
+- If AI can't resolve a conflict confidently, it aborts and asks you to handle it manually
+- Safe to run - doesn't modify your working branch

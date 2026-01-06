@@ -1,62 +1,47 @@
 # jd - Jenkins Deploy
 
-Trigger Jenkins builds for contacto projects from the command line.
+Deploy contacto projects without opening Jenkins in your browser. Trigger builds, watch logs, check status, abort runaway builds - all from your terminal.
 
-## Requirements
+## Quick Start
 
-- `JENKINS_USER` - your Jenkins username
-- `JENKINS_TOKEN` - your Jenkins API token (get from Jenkins > User > Configure > API Token)
-- `fzf` (optional) - for interactive mode
+```bash
+# First, set up your credentials (one time)
+export JENKINS_USER='your-username'
+export JENKINS_TOKEN='your-api-token'  # Get from Jenkins > Your Profile > Configure > API Token
+```
 
 ## Usage
 
 ```bash
-jd [REPO] [BRANCH] [OPTIONS]
+jd.sh [REPO] [BRANCH] [OPTIONS]
 ```
 
-### Arguments
+Defaults to `contacto-console` on `dev` branch.
 
-| Arg | Default | Description |
-|-----|---------|-------------|
-| REPO | contacto-console | Repository name |
-| BRANCH | dev | Branch name |
-
-### Options
-
-| Flag | Description |
-|------|-------------|
-| `--prod` | Deploy to production |
-| `-w` | Watch build progress |
-| `-s` | Show recent build status |
-| `-a BUILD_NUMBER` | Abort specified build |
-| `-i` | Interactive mode (fzf) |
-| `-h` | Help |
-
-## Examples
+## Common Commands
 
 ```bash
-# Build contacto-console dev, deploy to dev
-jd
-
-# Deploy to prod
-jd contacto-console dev --prod
-
-# Build and watch progress
-jd contacto-api staging -w
-
-# Show recent builds
-jd -s
-
-# Abort a build
-jd -a 3390
-
-# Interactive mode
-jd -i
+jd.sh                                # Deploy contacto-console/dev to dev environment
+jd.sh contacto-api staging           # Deploy contacto-api/staging to dev
+jd.sh contacto-console dev --prod    # Deploy to production
+jd.sh -w                             # Deploy and watch the build logs live
+jd.sh -s                             # Check recent build status
+jd.sh -a 3390                        # Abort build #3390
+jd.sh -i                             # Interactive mode - pick repo/branch with fzf
 ```
 
-## Setup
+## Options
 
-```bash
-export JENKINS_USER='your-username'
-export JENKINS_TOKEN='your-api-token'
-```
+| Flag | What it does |
+|------|--------------|
+| `--prod` | Deploy to production instead of dev |
+| `-w` | Stream build logs in real-time |
+| `-s` | Show last 10 builds with status |
+| `-a NUMBER` | Abort a running build |
+| `-i` | Pick repo and branch interactively (needs fzf) |
+| `-h` | Show help |
+
+## Requirements
+
+- `JENKINS_USER` and `JENKINS_TOKEN` environment variables
+- `fzf` (optional, for interactive mode - `brew install fzf`)
