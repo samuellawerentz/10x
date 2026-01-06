@@ -191,7 +191,7 @@ abort_build() {
         echo "View build: $JENKINS_URL/job/contacto-io/job/$repo/job/$branch/$build_number"
     else
         echo -e "${RED}✗ Failed to abort build (HTTP $HTTP_CODE)${NC}"
-        echo "$RESPONSE" | head -n-1
+        echo "$RESPONSE" | sed '$d'
         exit 1
     fi
 }

@@ -71,7 +71,7 @@ if git merge "$branch_name" --no-ff -m "Merge $branch_name to dev"; then
         exit 1
     fi
 else
-    echo "Merge conflict detected. Invoking cursor-agent to resolve..."
+    echo "Merge conflict detected..."
     
     # Get list of conflicted files
     conflicted_files=$(git diff --name-only --diff-filter=U)
@@ -90,9 +90,33 @@ else
     echo "Conflicted files:"
     echo "$conflicted_files"
     
-    # Invoke cursor-agent to resolve conflicts
-    resolution_result=$(cursor-agent -p --force --model sonnet-4.5-thinking \
-        "You are resolving git merge conflicts. The following files have conflicts:
+    # Determine which AI agent to use (cursor-agent preferred, claude-code as fallback)
+    AI_AGENT=""
+    AI_AGENT_NAME=""
+    if command -v cursor-agent &> /dev/null; then
+        AI_AGENT="cursor-agent"
+        AI_AGENT_NAME="cursor-agent"
+    elif command -v claude-code &> /dev/null; then
+        AI_AGENT="claude-code"
+        AI_AGENT_NAME="claude-code"
+    else
+        echo "No AI agent found (cursor-agent or claude-code)."
+        echo "Please resolve conflicts manually and commit."
+        echo ""
+        echo "Conflicted files:"
+        echo "$conflicted_files"
+        git merge --abort
+        git checkout "$current_branch"
+        git branch -D temp-merge-branch 2>/dev/null
+        if [ "$stashed" = true ]; then
+            git stash pop
+        fi
+        exit 1
+    fi
+    
+    echo "Using $AI_AGENT_NAME to resolve conflicts..."
+    
+    CONFLICT_PROMPT="You are resolving git merge conflicts. The following files have conflicts:
 $conflicted_files
 
 Instructions:
@@ -102,11 +126,17 @@ Instructions:
 4. Ensure the resulting code is valid and functional
 5. If you cannot resolve a conflict intelligently (e.g., conflicting business logic that requires human decision), respond with exactly: HUMAN_REQUIRED
 
-After resolving, ensure no conflict markers remain in any file." 2>&1)
+After resolving, ensure no conflict markers remain in any file."
+
+    if [ "$AI_AGENT" = "cursor-agent" ]; then
+        resolution_result=$(cursor-agent -p --force --model sonnet-4.5-thinking "$CONFLICT_PROMPT" 2>&1)
+    else
+        resolution_result=$(claude-code -p --force "$CONFLICT_PROMPT" 2>&1)
+    fi
     
     # Check if human intervention is required
     if echo "$resolution_result" | grep -q "HUMAN_REQUIRED"; then
-        echo "Cursor-agent requires human intervention to resolve conflicts."
+        echo "$AI_AGENT_NAME requires human intervention to resolve conflicts."
         echo "Aborting merge..."
         git merge --abort
         git checkout "$current_branch"
@@ -118,7 +148,7 @@ After resolving, ensure no conflict markers remain in any file." 2>&1)
     fi
     
     # Check if any conflict markers remain
-    if grep -rl "^<<<<<<<\|^=======\|^>>>>>>>" $conflicted_files 2>/dev/null; then
+    if grep -rEl "^<<<<<<<|^=======|^>>>>>>>" $conflicted_files 2>/dev/null; then
         echo "Conflict markers still present. Resolution failed."
         git merge --abort
         git checkout "$current_branch"
@@ -134,7 +164,7 @@ After resolving, ensure no conflict markers remain in any file." 2>&1)
     echo "$conflicted_files" | xargs git add
     
     if git commit --no-edit; then
-        echo "Conflict resolved by cursor-agent. Pushing to remote dev..."
+        echo "Conflict resolved by $AI_AGENT_NAME. Pushing to remote dev..."
         if git push origin temp-merge-branch:dev; then
             echo "Successfully merged and pushed to dev!"
             git checkout "$current_branch"
