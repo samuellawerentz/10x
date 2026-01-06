@@ -6,11 +6,11 @@ Connects to Jenkins at https://jenkins.plivops.com
 
 ## Screenshots
 
-![Interactive mode](FreezeFrame 2026-01-06 at 4.29.28 PM.png)
+![Interactive mode](./FreezeFrame 2026-01-06 at 4.29.28 PM.png)
 
-![Build triggered](FreezeFrame 2026-01-06 at 4.29.36 PM.png)
+![Build triggered](./FreezeFrame 2026-01-06 at 4.29.36 PM.png)
 
-![Watch mode](FreezeFrame 2026-01-06 at 4.29.47 PM.png)
+![Watch mode](./FreezeFrame 2026-01-06 at 4.29.47 PM.png)
 
 ## Quick Start
 
