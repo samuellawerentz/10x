@@ -27,6 +27,8 @@ Run with `-h` flag for all options and configuration details.
 
 ## Installation
 
+### Install Manually
+
 ```bash
 # 1. Clone
 git clone git@github.com:samuellawerentz/10x.git ~/10x
@@ -39,3 +41,9 @@ export PATH="$PATH:$HOME/10x/jd:$HOME/10x/mdd"
 ```
 
 Restart your terminal or source your rc file. Done.
+
+### Install via LLM
+
+Give your LLM this prompt:
+
+> Clone the 10x repo from `git@github.com:samuellawerentz/10x.git` into my home directory, make the scripts `jd/jd.sh` and `mdd/mdd.sh` executable, and add both directories to my PATH in my shell rc file. Then source the rc file.
