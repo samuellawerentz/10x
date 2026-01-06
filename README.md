@@ -13,6 +13,9 @@ Become 10x, save 5-10 minutes on every deploy and merge. That adds up fast when 
 | [jd](./jd/) | Deploy from your terminal. Skip opening browsers, clicking through UI, and waiting for pages to load. Select project, branch, and deploy in seconds. |
 | [mdd](./mdd/) | Merge any branch to dev with zero manual intervention without the branch switching headache. Detects conflicts, uses AI (Claude/OpenAI) to resolve them intelligently, and pushes the result. No more copy-pasting conflict markers. |
 
+Deploy via cli
+![Deploy to jenkins](./jd/screenshot-1.png)
+
 ## Quick Start
 
 ```bash
