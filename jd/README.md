@@ -1,6 +1,6 @@
 # jd - Jenkins Deploy
 
-Deploy contacto projects from terminal. Trigger builds, watch logs, check status, abort builds.
+Deploy CX projects from terminal. Trigger builds, watch logs, check status, abort builds.
 
 ## Screenshots
 

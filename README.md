@@ -1,6 +1,6 @@
 # 10x
 
-CLI tools that automate tedious workflows. Built for Contacto devs, useful for anyone who wants to stop context-switching between terminal and browser.
+CLI tools that automate tedious workflows. Built for CX devs, useful for anyone who wants to stop context-switching between terminal and browser.
 
 ## Why 10x?
 
