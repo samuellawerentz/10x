@@ -12,6 +12,7 @@ Become 10x, save 5-10 minutes on every deploy and merge. That adds up fast when 
 |--------|--------------|
 | [jd](./jd/) | Deploy from your terminal. Skip opening browsers, clicking through UI, and waiting for pages to load. Select project, branch, and deploy in seconds. |
 | [mdd](./mdd/) | Merge any branch to dev without the branch switching headache. Detects conflicts, uses AI (Claude/OpenAI) to resolve them intelligently, and pushes the result. No more copy-pasting conflict markers. |
+| [awake](./awake/) | Keep your Mac awake from terminal. Set a timer or run indefinitely. Runs in background, survives terminal close. |
 
 
 
@@ -24,10 +25,10 @@ Become 10x, save 5-10 minutes on every deploy and merge. That adds up fast when 
 git clone git@github.com:samuellawerentz/10x.git ~/10x
 
 # 2. Make executable
-chmod +x ~/10x/jd/jd.sh ~/10x/mdd/mdd.sh
+chmod +x ~/10x/jd/jd.sh ~/10x/mdd/mdd.sh ~/10x/awake/awake.sh
 
 # 3. Add to PATH (put this in your .bashrc or .zshrc)
-export PATH="$PATH:$HOME/10x/jd:$HOME/10x/mdd"
+export PATH="$PATH:$HOME/10x/bin"
 ```
 
 Restart your terminal or source your rc file. Done.
@@ -36,4 +37,4 @@ Restart your terminal or source your rc file. Done.
 
 Give your LLM this prompt:
 
-> Clone the 10x repo from `git@github.com:samuellawerentz/10x.git` into my home directory, make the scripts `jd/jd.sh` and `mdd/mdd.sh` executable, and add both directories to my PATH in my shell rc file. Then source the rc file.
+> Clone the 10x repo from `git@github.com:samuellawerentz/10x.git` into my home directory, make all scripts executable, and add `~/10x/bin` to my PATH in my shell rc file. Then source the rc file.
