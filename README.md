@@ -15,19 +15,6 @@ Become 10x, save 5-10 minutes on every deploy and merge. That adds up fast when 
 
 
 
-
-## Quick Start
-
-```bash
-# Deploy current branch to Jenkins
-jd.sh
-
-# Merge feature branch to dev (handles conflicts automatically)
-mdd.sh feature/new-thing
-```
-
-Run with `-h` flag for all options and configuration details.
-
 ## Installation
 
 ### Install Manually
