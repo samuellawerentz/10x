@@ -22,12 +22,6 @@ export JENKINS_TOKEN='your-api-token'  # Get from Jenkins > Your Name > Configur
 ```bash
 jd [REPO] [BRANCH] [OPTIONS]
 
-# Examples
-jd # Deployes contacto-console dev branch to dev env
-jd contacto-core # Deploys contacto-core dev branch to dev
-jd contacto-core -s # Displays status of dev branch build
-jd contacto-core feature/xxx # Deploy feature/xxx to dev env
-jd contacto-core main --prod # Deploy contacto-core main branch to prod
 ```
 
 **Defaults:** `contacto-console` repo, `dev` branch, `dev` environment
@@ -36,7 +30,7 @@ jd contacto-core main --prod # Deploy contacto-core main branch to prod
 
 | Flag | Description | Example |
 |------|-------------|---------|
-| (none) | Trigger build | `jd.sh` or `jd contacto-api staging` |
+| (none) | Trigger build to dev env | `jd` or `jd hodor feature/xxx` |
 | `--prod` | Deploy to production | `jd contacto-console main --prod` |
 | `-w` | Watch - stream live logs | `jd -w` |
 | `-s` | Status - show last 10 builds | `jd -s` |
