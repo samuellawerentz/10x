@@ -38,3 +38,7 @@ Restart your terminal or source your rc file. Done.
 Give your LLM this prompt:
 
 > Clone the 10x repo from `git@github.com:samuellawerentz/10x.git` into my home directory, make all scripts executable, and add `~/10x/bin` to my PATH in my shell rc file. Then source the rc file.
+
+
+### How to update to latest version
+- Just pull the repo again, your scripts are updated to latest version
